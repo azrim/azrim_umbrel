@@ -1,0 +1,15 @@
+manifestVersion: 1
+id: azrim-shoko
+name: Shoko Server
+tagline: Anime cataloging and management server
+icon: https://shokoanime.com/icon.png
+category: media
+version: "5.3.3"
+port: 8111
+description: Automatically catalog your anime collection
+developer: Shoko Anime
+website: https://shokoanime.com
+repo: https://github.com/ShokoAnime/ShokoServer
+support: https://discord.gg/shokoanime
+releaseNotes: ""
+dependencies: []
