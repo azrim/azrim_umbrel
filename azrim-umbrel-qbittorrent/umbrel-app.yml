@@ -1,0 +1,24 @@
+manifestVersion: 1
+id: azrim-umbrel-qbittorrent
+name: qBittorrent
+tagline: Free and open-source BitTorrent client
+icon: https://upload.wikimedia.org/wikipedia/commons/6/66/New_qBittorrent_Logo.svg
+category: media
+version: "5.0"
+port: 8112
+description: >-
+  qBittorrent is a free and open-source BitTorrent client. It aims to be a
+  good alternative to other bittorrent clients with a slick interface and
+  no bundled software.
+developer: qBittorrent
+website: https://www.qbittorrent.org
+submitter: Azrim
+submission: https://github.com/azrim/azrim_umbrel
+repo: https://github.com/qbittorrent/qBittorrent
+support: https://github.com/qbittorrent/qBittorrent/issues
+gallery: []
+releaseNotes: ""
+dependencies: []
+path: ""
+defaultUsername: "admin"
+defaultPassword: "adminadmin"
