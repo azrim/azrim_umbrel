@@ -1,15 +1,22 @@
 manifestVersion: 1
 id: azrim-shoko
 name: Shoko Server
-tagline: Anime cataloging and management server
-icon: https://shokoanime.com/icon.png
+tagline: Automatic anime collection cataloging
+icon: https://raw.githubusercontent.com/azrim/azrim_umbrel/main/azrim-shoko/icon.png
 category: media
 version: "5.3.3"
 port: 8111
-description: Automatically catalog your anime collection
+description: >-
+  Shoko is an anime cataloging program that automates the cataloging of your
+  anime collection regardless of size. It removes the tedious task of manually
+  adding every file and inputting file information.
+releaseNotes: ""
 developer: Shoko Anime
 website: https://shokoanime.com
 repo: https://github.com/ShokoAnime/ShokoServer
-support: https://discord.gg/shokoanime
-releaseNotes: ""
+support: https://discord.gg/vpeHDsg
+gallery: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
 dependencies: []
