@@ -2,7 +2,7 @@ version: "3.7"
 services:
   app_proxy:
     environment:
-      APP_HOST: azrim-shoko_server_1
+      APP_HOST: azrim-umbrel-shoko_server_1
       APP_PORT: 8111
 
   server:
