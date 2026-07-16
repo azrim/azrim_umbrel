@@ -14,4 +14,4 @@ services:
       - TZ=Asia/Jakarta
     volumes:
       - ${APP_DATA_DIR}/data/config:/home/shoko/.shoko
-      - ${UMBREL_ROOT}/data/storage/downloads/anime:/mnt/anime
+      - ${UMBREL_ROOT}/home/videos/anime:/mnt/anime
