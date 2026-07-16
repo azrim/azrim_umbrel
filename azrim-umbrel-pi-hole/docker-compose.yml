@@ -1,0 +1,14 @@
+services:
+  server:
+    image: pihole/pihole:latest
+    restart: on-failure
+    network_mode: host
+    volumes:
+      - ${APP_DATA_DIR}/data/pihole:/etc/pihole/
+      - ${APP_DATA_DIR}/data/dnsmasq:/etc/dnsmasq.d/
+    environment:
+      - FTLCONF_webserver_api_password=${APP_PASSWORD}
+      - FTLCONF_webserver_port=8082,[::]:8082
+      - FTLCONF_dns_listeningMode=all
+    cap_add:
+      - NET_ADMIN
