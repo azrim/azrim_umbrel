@@ -14,7 +14,7 @@ services:
       - TZ=Asia/Jakarta
       - ND_SCANSCHEDULE=1h
       - ND_LOGLEVEL=info
-      - ND_BASEURL=""
+      - ND_BASEURL=/
     volumes:
       - ${APP_DATA_DIR}/data/config:/data
       - ${UMBREL_ROOT}/home/Music:/music:ro
