@@ -1,0 +1,25 @@
+manifestVersion: 1
+id: azrim-umbrel-navidrome
+name: Navidrome
+tagline: Modern music server and streamer compatible with Subsonic/Airsonic
+icon: https://raw.githubusercontent.com/navidrome/navidrome/master/resources/navbar-logo.svg
+category: media
+version: "0.54.0"
+port: 4533
+description: >-
+  Navidrome is a self-hosted music server and streamer that is compatible
+  with Subsonic/Airsonic. It supports a wide range of audio formats, has
+  low resource consumption, and provides a responsive web UI for managing
+  and playing your music collection.
+developer: Deluan
+website: https://www.navidrome.org
+submitter: Azrim
+submission: https://github.com/azrim/azrim_umbrel
+repo: https://github.com/navidrome/navidrome
+support: https://github.com/navidrome/navidrome/issues
+gallery: []
+releaseNotes: ""
+dependencies: []
+path: ""
+defaultUsername: ""
+defaultPassword: ""
