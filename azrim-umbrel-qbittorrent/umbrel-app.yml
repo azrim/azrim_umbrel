@@ -3,7 +3,7 @@ id: azrim-umbrel-qbittorrent
 name: qBittorrent
 tagline: Free and open-source BitTorrent client
 icon: https://upload.wikimedia.org/wikipedia/commons/6/66/New_qBittorrent_Logo.svg
-category: media
+category: files
 version: "5.0"
 port: 8112
 description: >-

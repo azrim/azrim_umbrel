@@ -3,7 +3,7 @@ id: azrim-umbrel-shoko
 icon: https://raw.githubusercontent.com/ShokoAnime/ShokoServer/master/Shoko.Server/Images/logo.png
 name: Shoko Server
 tagline: Automatic anime collection cataloging and management
-category: Media
+category: media
 version: "5.3.3"
 port: 8111
 description: >-
