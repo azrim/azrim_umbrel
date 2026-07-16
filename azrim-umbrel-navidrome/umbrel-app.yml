@@ -1,5 +1,6 @@
 manifestVersion: 1.1
 id: azrim-umbrel-navidrome
+icon: https://raw.githubusercontent.com/navidrome/navidrome/master/resources/logo-192x192.png
 category: media
 name: Navidrome
 version: "0.63.2"

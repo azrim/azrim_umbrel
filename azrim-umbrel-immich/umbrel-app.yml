@@ -1,5 +1,6 @@
 manifestVersion: 1.1
 id: azrim-umbrel-immich
+icon: https://raw.githubusercontent.com/immich-app/immich/main/design/immich-logo.png
 category: files
 name: Immich
 version: "v3.0.3"

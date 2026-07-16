@@ -1,5 +1,6 @@
 manifestVersion: 1.1
 id: azrim-umbrel-jellyfin
+icon: https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Jellyfin-icon.svg/200px-Jellyfin-icon.svg.png
 category: media
 name: Jellyfin
 version: "10.11.11"
