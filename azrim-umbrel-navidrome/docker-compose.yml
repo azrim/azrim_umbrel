@@ -1,20 +1,16 @@
-version: "3.7"
 services:
   app_proxy:
     environment:
       APP_HOST: azrim-umbrel-navidrome_server_1
       APP_PORT: 4533
+      PROXY_AUTH_ADD: "false"
 
   server:
     image: deluan/navidrome:latest
-    restart: unless-stopped
+    restart: on-failure
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Asia/Jakarta
-      - ND_SCANSCHEDULE=1h
-      - ND_LOGLEVEL=info
-      - ND_BASEURL=""
     volumes:
-      - ${APP_DATA_DIR}/data/config:/data
-      - ${UMBREL_ROOT}/home/Music:/music:ro
+      - ${APP_DATA_DIR}/data:/data
+      - ${UMBREL_ROOT}/data/storage/downloads/music:/music
