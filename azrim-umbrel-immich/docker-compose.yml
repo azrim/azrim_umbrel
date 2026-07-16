@@ -1,0 +1,49 @@
+x-environment: &env
+  NODE_ENV: "production"
+  DB_HOSTNAME: "azrim-umbrel-immich_postgres_1"
+  DB_USERNAME: &db_username "immich"
+  DB_PASSWORD: &db_password "moneyprintergobrrr"
+  DB_DATABASE_NAME: &db_database_name "immich"
+  REDIS_HOSTNAME: "azrim-umbrel-immich_redis_1"
+  LOG_LEVEL: "log"
+  JWT_SECRET: ${APP_SEED}
+  DISABLE_REVERSE_GEOCODING: "false"
+  REVERSE_GEOCODING_PRECISION: "3"
+  PUBLIC_LOGIN_PAGE_MESSAGE: ""
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: azrim-umbrel-immich_server_1
+      APP_PORT: 2283
+      PROXY_AUTH_ADD: "false"
+
+  server:
+    image: ghcr.io/immich-app/immich-server:latest
+    volumes:
+      - ${APP_DATA_DIR}/data/upload:/data
+    environment:
+      <<: *env
+    depends_on:
+      - redis
+      - postgres
+    restart: on-failure
+
+  redis:
+    image: valkey/valkey:8-bookworm
+    user: "1000:1000"
+    restart: on-failure
+    volumes:
+      - ${APP_DATA_DIR}/data/redis:/data
+
+  postgres:
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
+    environment:
+      <<: *env
+      POSTGRES_PASSWORD: *db_password
+      POSTGRES_USER: *db_username
+      POSTGRES_DB: *db_database_name
+      POSTGRES_INITDB_ARGS: "--data-checksums"
+    volumes:
+      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
+    restart: on-failure
