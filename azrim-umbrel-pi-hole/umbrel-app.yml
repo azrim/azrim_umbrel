@@ -1,5 +1,6 @@
 manifestVersion: 1.1
 id: azrim-umbrel-pi-hole
+icon: https://raw.githubusercontent.com/pi-hole/graphics/master/Vortex/Vortex.png
 category: networking
 name: Pi-hole
 version: "2026.07.2"
