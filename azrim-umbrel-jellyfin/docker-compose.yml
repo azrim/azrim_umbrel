@@ -16,5 +16,6 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
       - ${UMBREL_ROOT}/home/Downloads:/downloads
+      - ${UMBREL_ROOT}/home/Videos:/videos
     ports:
       - 7359:7359/udp
