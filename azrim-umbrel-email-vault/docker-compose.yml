@@ -1,0 +1,24 @@
+# Email Vault — alias pool + Gmail finder
+# Server image not published yet; phase 1 will pin ghcr.io/azrim/email-vault-panel
+# or use a local build.
+services:
+  app_proxy:
+    environment:
+      APP_HOST: azrim-umbrel-email-vault_server_1
+      APP_PORT: 8787
+      # Umbrel session in front of the app (recommended — Gmail vault access)
+      PROXY_AUTH_ADD: "true"
+
+  server:
+    image: ghcr.io/azrim/email-vault-panel:0.1.0
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      - TZ=Asia/Jakarta
+      - DATA_DIR=/data
+      - DEFAULT_DOMAIN=sukiliar.pro
+      - HOST=0.0.0.0
+      - PORT=8787
+      # Optional: APP_PASSWORD=... for extra gate inside the app
+    volumes:
+      - ${APP_DATA_DIR}/data:/data

@@ -1,0 +1,28 @@
+manifestVersion: 1.1
+id: azrim-umbrel-email-vault
+name: Email Vault
+tagline: Catch-all alias manager + Gmail inbox finder
+icon: https://raw.githubusercontent.com/umbrelsoftware/umbrel/master/packages/umbreld/source/modules/apps/legacy-files/umbrel-app-store-icon.png
+category: files
+version: "0.1.0"
+port: 8787
+description: >-
+  Manage catch-all email aliases (e.g. *@sukiliar.pro) and find messages that
+  landed in your Gmail vault inbox for a given alias. Generate new aliases,
+  archive old ones, copy addresses, and search Gmail by delivered-to address
+  for OTP / verification mail.
+
+  Not a full mail server — Cloudflare Email Routing still delivers to one Gmail
+  vault; this app organizes aliases and filters that inbox.
+developer: Azrim
+website: https://github.com/azrim/azrim_umbrel
+dependencies: []
+repo: https://github.com/azrim/azrim_umbrel
+support: https://github.com/azrim/azrim_umbrel/issues
+gallery: []
+path: ""
+permissions: []
+releaseNotes: >-
+  Skeleton 0.1.0 — packaging only. Wire server image before install.
+submitter: Azrim
+submission: https://github.com/azrim/azrim_umbrel
