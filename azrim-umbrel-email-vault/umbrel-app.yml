@@ -4,7 +4,7 @@ name: Email Vault
 tagline: Catch-all alias manager + Gmail inbox finder
 icon: https://raw.githubusercontent.com/umbrelsoftware/umbrel/master/packages/umbreld/source/modules/apps/legacy-files/umbrel-app-store-icon.png
 category: files
-version: "0.2.0"
+version: "0.2.1"
 port: 8787
 description: >-
   Manage catch-all email aliases (e.g. *@sukiliar.pro) and find messages that
@@ -23,7 +23,7 @@ gallery: []
 path: ""
 permissions: []
 releaseNotes: >-
-  0.2.0 — phase 2: Gmail OAuth, search mail by alias, OTP code highlight.
-  Paste Google client secrets in-app, then Connect Gmail.
+  0.2.1 — Gmail Desktop OAuth (paste code). Fixes Google rejecting
+  umbrel.local / IP redirects. Use OAuth client type Desktop app.
 submitter: Azrim
 submission: https://github.com/azrim/azrim_umbrel

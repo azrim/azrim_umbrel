@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: "false"
 
   server:
-    image: ghcr.io/azrim/email-vault-panel:0.2.0
+    image: ghcr.io/azrim/email-vault-panel:0.2.1
     restart: on-failure
     stop_grace_period: 1m
     environment:
@@ -16,8 +16,6 @@ services:
       - DEFAULT_DOMAIN=sukiliar.pro
       - HOST=0.0.0.0
       - PORT=8787
-      # Optional: force OAuth redirect origin if proxy host is wrong
-      # - PUBLIC_BASE_URL=http://umbrel.local:PORT
     volumes:
       - ${APP_DATA_DIR}/data:/data
     healthcheck:
