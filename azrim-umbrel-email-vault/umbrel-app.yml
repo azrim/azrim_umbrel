@@ -23,6 +23,6 @@ gallery: []
 path: ""
 permissions: []
 releaseNotes: >-
-  Skeleton 0.1.0 — packaging only. Wire server image before install.
+  0.1.0 — phase 1 alias manager (generate/list/archive). Gmail finder next.
 submitter: Azrim
 submission: https://github.com/azrim/azrim_umbrel

@@ -9,12 +9,12 @@ Spec: see Hermes durable notes
 ## Status
 
 - [x] Store skeleton (`umbrel-app.yml`, `docker-compose.yml`)
-- [x] Panel server phase 1 source: `azrim/email-vault-panel` (aliases CRUD)
-- [ ] Published image `ghcr.io/azrim/email-vault-panel:0.1.0` (build on host with Docker)
+- [x] Panel server phase 1 source: `https://github.com/azrim/email-vault-panel`
+- [x] Image `ghcr.io/azrim/email-vault-panel:0.1.0` (+ `latest`)
 - [ ] Gmail OAuth (phase 2)
 - [ ] Install smoke on umbrelOS
 
-Do not install from store until the image is published (or compose points at a local build).
+Install after Community Store refresh. First open = alias manager only (no Gmail yet).
 
 ## Pattern
 
