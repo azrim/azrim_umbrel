@@ -2,20 +2,31 @@
 
 Umbrel Community App: **Email Vault** — manage catch-all aliases + find mail in Gmail vault.
 
-Spec: see Hermes durable notes  
-`/opt/data/projects/email-pool/EMAIL_VAULT_PANEL_SPEC.md`  
-(or mirror into this folder when the server repo is split).
+- Server: https://github.com/azrim/email-vault-panel
+- Image: `ghcr.io/azrim/email-vault-panel:0.1.0`
 
 ## Status
 
-- [x] Store skeleton (`umbrel-app.yml`, `docker-compose.yml`)
-- [x] Panel server phase 1 source: `https://github.com/azrim/email-vault-panel`
-- [x] Image `ghcr.io/azrim/email-vault-panel:0.1.0` (+ `latest`)
-- [ ] Gmail OAuth (phase 2)
-- [ ] Install smoke on umbrelOS
+- [x] Store packaging
+- [x] Phase 1 aliases (generate / list / archive)
+- [x] Image on GHCR (public)
+- [ ] Gmail phase 2
+- [ ] Confirmed install open on umbrelOS
 
-Install after Community Store refresh. First open = alias manager only (no Gmail yet).
+## If stuck on "Starting"
+
+1. Refresh community store (`azrim/azrim_umbrel`)
+2. Update app to **0.1.1** (or uninstall → install)
+3. On host (Settings → Terminal → **umbrelOS**, not Hermes):
+
+```bash
+docker ps -a | grep -i email-vault
+docker logs azrim-umbrel-email-vault_server_1 --tail 80
+docker logs azrim-umbrel-email-vault_app_proxy_1 --tail 80
+```
+
+Common causes: wrong `APP_HOST`, image pull fail, proxy auth health hang.
 
 ## Pattern
 
-Same as sibling apps: `app_proxy` + one `server` service, data under `${APP_DATA_DIR}/data`.
+`app_proxy` + `server`, data under `${APP_DATA_DIR}/data`.
