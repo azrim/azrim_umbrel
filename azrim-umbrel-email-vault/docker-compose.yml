@@ -2,11 +2,11 @@
 services:
   app_proxy:
     environment:
-      # Same naming style as azrim-umbrel-navidrome / immich in this store
-      APP_HOST: azrim-umbrel-email-vault_server_1
+      # Use Compose *service* DNS name (always resolvable on the app network).
+      # Container names flip between foo_server_1 and foo-server-1 across
+      # Compose/Umbrel versions and leave the UI stuck on "Starting".
+      APP_HOST: server
       APP_PORT: 8787
-      # Working apps in this store use false. "true" can leave UI on
-      # "starting" if proxy health never finishes through auth.
       PROXY_AUTH_ADD: "false"
 
   server:
@@ -25,11 +25,11 @@ services:
       test:
         [
           "CMD",
-          "python",
+          "python3",
           "-c",
           "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/health', timeout=3)",
         ]
       interval: 10s
       timeout: 5s
       retries: 12
-      start_period: 20s
+      start_period: 15s

@@ -4,7 +4,7 @@ name: Email Vault
 tagline: Catch-all alias manager + Gmail inbox finder
 icon: https://raw.githubusercontent.com/umbrelsoftware/umbrel/master/packages/umbreld/source/modules/apps/legacy-files/umbrel-app-store-icon.png
 category: files
-version: "0.1.1"
+version: "0.1.2"
 port: 8787
 description: >-
   Manage catch-all email aliases (e.g. *@sukiliar.pro) and find messages that
@@ -23,7 +23,7 @@ gallery: []
 path: ""
 permissions: []
 releaseNotes: >-
-  0.1.1 — fix stuck "starting": PROXY_AUTH_ADD=false (match working apps),
-  healthcheck on /api/health. Update/reinstall after store refresh.
+  0.1.2 — fix Starting hang: APP_HOST=server (Compose DNS), not
+  *_server_1 container name. Uninstall + reinstall after store refresh.
 submitter: Azrim
 submission: https://github.com/azrim/azrim_umbrel
