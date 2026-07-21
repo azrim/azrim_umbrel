@@ -1,16 +1,13 @@
-# Email Vault — alias pool + Gmail finder (phase 1)
+# Email Vault — alias pool + Gmail finder
 services:
   app_proxy:
     environment:
-      # Use Compose *service* DNS name (always resolvable on the app network).
-      # Container names flip between foo_server_1 and foo-server-1 across
-      # Compose/Umbrel versions and leave the UI stuck on "Starting".
-      APP_HOST: server
+      APP_HOST: azrim-umbrel-email-vault_server_1
       APP_PORT: 8787
       PROXY_AUTH_ADD: "false"
 
   server:
-    image: ghcr.io/azrim/email-vault-panel:0.1.0
+    image: ghcr.io/azrim/email-vault-panel:0.2.0
     restart: on-failure
     stop_grace_period: 1m
     environment:
@@ -19,17 +16,19 @@ services:
       - DEFAULT_DOMAIN=sukiliar.pro
       - HOST=0.0.0.0
       - PORT=8787
+      # Optional: force OAuth redirect origin if proxy host is wrong
+      # - PUBLIC_BASE_URL=http://umbrel.local:PORT
     volumes:
       - ${APP_DATA_DIR}/data:/data
     healthcheck:
       test:
         [
           "CMD",
-          "python3",
+          "python",
           "-c",
           "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/health', timeout=3)",
         ]
       interval: 10s
       timeout: 5s
       retries: 12
-      start_period: 15s
+      start_period: 20s
