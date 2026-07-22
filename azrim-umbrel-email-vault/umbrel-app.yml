@@ -4,16 +4,10 @@ name: Email Vault
 tagline: Catch-all alias manager + Gmail inbox finder
 icon: https://raw.githubusercontent.com/umbrelsoftware/umbrel/master/packages/umbreld/source/modules/apps/legacy-files/umbrel-app-store-icon.png
 category: files
-version: "0.2.1"
+version: "0.2.2"
 port: 8787
 description: >-
-  Manage catch-all email aliases (e.g. *@sukiliar.pro) and find messages that
-  landed in your Gmail vault inbox for a given alias. Generate new aliases,
-  archive old ones, copy addresses, and search Gmail by delivered-to address
-  for OTP / verification mail.
-
-  Not a full mail server — Cloudflare Email Routing still delivers to one Gmail
-  vault; this app organizes aliases and filters that inbox.
+  Manage catch-all email aliases and find Gmail vault messages per alias.
 developer: Azrim
 website: https://github.com/azrim/azrim_umbrel
 dependencies: []
@@ -23,7 +17,7 @@ gallery: []
 path: ""
 permissions: []
 releaseNotes: >-
-  0.2.1 — Gmail Desktop OAuth (paste code). Fixes Google rejecting
-  umbrel.local / IP redirects. Use OAuth client type Desktop app.
+  0.2.2 — Gmail via Desktop loopback helper + import token (OOB blocked by Google;
+  .local redirects invalid). Run scripts/oauth_desktop_helper.py on a PC.
 submitter: Azrim
 submission: https://github.com/azrim/azrim_umbrel

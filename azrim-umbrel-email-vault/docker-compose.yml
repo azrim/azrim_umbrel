@@ -1,13 +1,12 @@
-# Email Vault — alias pool + Gmail finder
+# Email Vault
 services:
   app_proxy:
     environment:
       APP_HOST: azrim-umbrel-email-vault_server_1
       APP_PORT: 8787
       PROXY_AUTH_ADD: "false"
-
   server:
-    image: ghcr.io/azrim/email-vault-panel:0.2.1
+    image: ghcr.io/azrim/email-vault-panel:0.2.2
     restart: on-failure
     stop_grace_period: 1m
     environment:
@@ -19,13 +18,7 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data:/data
     healthcheck:
-      test:
-        [
-          "CMD",
-          "python",
-          "-c",
-          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/health', timeout=3)",
-        ]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8787/api/health', timeout=3)"]
       interval: 10s
       timeout: 5s
       retries: 12
