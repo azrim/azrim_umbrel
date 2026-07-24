@@ -2,14 +2,13 @@
 # Upstream: https://github.com/rilspratama/Foxrouters (v1.6.1)
 # SQLite log backend (no ClickHouse) — lighter for Umbrel 4GB boxes.
 #
-# If Umbrel UI stuck on "Starting":
-#   1) APP_HOST is short name `server` (Umbrel app_proxy pattern)
-#   2) data dir must be writable by container uid 1000
-#   3) check: docker logs azrim-umbrel-foxrouters_server_1
+# Umbrel app_proxy: APP_HOST must resolve on the app network.
+# Prefer long name (…_server_1) like Email Vault / 9Router packages.
+# If proxy 502 while server logs "started", check APP_HOST + listen 0.0.0.0.
 services:
   app_proxy:
     environment:
-      APP_HOST: server
+      APP_HOST: azrim-umbrel-foxrouters_server_1
       APP_PORT: 20130
       PROXY_AUTH_ADD: "false"
 
@@ -36,14 +35,14 @@ services:
     environment:
       - TZ=Asia/Jakarta
       - PORT=20130
+      # Listen on all interfaces so Umbrel app_proxy can reach this container
+      - HOST=0.0.0.0
       - REDIS_ADDR=redis:6379
       - LOG_BACKEND=sqlite
       - LOG_SQLITE_PATH=/var/lib/foxrouters/logs.db
       - GATEWAY_KEY_FILE=/var/lib/foxrouters/gateway-key.txt
     volumes:
       - ${APP_DATA_DIR}/data/foxrouters:/var/lib/foxrouters
-    # Image is minimal; don't rely on wget. Exit 0 so Umbrel doesn't loop on HC.
-    # Real readiness = open /health after container is Up.
     healthcheck:
       test: ["CMD-SHELL", "exit 0"]
       interval: 30s

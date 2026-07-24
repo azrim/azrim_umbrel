@@ -4,7 +4,7 @@ name: FoxRouters
 tagline: OpenAI-compatible gateway for CodeBuddy (ck_*) + Grok
 icon: https://avatars.githubusercontent.com/u/8282593?v=4
 category: developer
-version: "1.6.1-r2"
+version: "1.6.1-r3"
 port: 20130
 description: >-
   FoxRouters is a local OpenAI-compatible AI gateway focused on CodeBuddy
@@ -27,8 +27,8 @@ gallery: []
 path: ""
 permissions: []
 releaseNotes: >-
-  1.6.1-r2 — Fix Umbrel "Starting" stuck: APP_HOST=server, root user for volume
-  perms, soft healthcheck. FoxRouters v1.6.1 + Redis + SQLite. Port 20130.
-  PROXY_AUTH_ADD=false (FoxRouters own login).
+  1.6.1-r3 — Fix proxy 502: APP_HOST=azrim-umbrel-foxrouters_server_1 (Email Vault
+  pattern) so app_proxy reaches server. Server already binds :20130 all interfaces.
+  Soft healthcheck + writable data volume retained.
 submitter: Azrim
 submission: https://github.com/azrim/azrim_umbrel
