@@ -2,9 +2,7 @@
 # Upstream: https://github.com/rilspratama/Foxrouters (v1.6.1)
 # SQLite log backend (no ClickHouse) — lighter for Umbrel 4GB boxes.
 #
-# Umbrel app_proxy: APP_HOST must resolve on the app network.
-# Prefer long name (…_server_1) like Email Vault / 9Router packages.
-# If proxy 502 while server logs "started", check APP_HOST + listen 0.0.0.0.
+# Login loop fix: COOKIE_SECURE=0 — Umbrel LAN is HTTP; Secure cookies are dropped.
 services:
   app_proxy:
     environment:
@@ -35,12 +33,11 @@ services:
     environment:
       - TZ=Asia/Jakarta
       - PORT=20130
-      # Listen on all interfaces so Umbrel app_proxy can reach this container
-      - HOST=0.0.0.0
       - REDIS_ADDR=redis:6379
       - LOG_BACKEND=sqlite
       - LOG_SQLITE_PATH=/var/lib/foxrouters/logs.db
       - GATEWAY_KEY_FILE=/var/lib/foxrouters/gateway-key.txt
+      - COOKIE_SECURE=0
     volumes:
       - ${APP_DATA_DIR}/data/foxrouters:/var/lib/foxrouters
     healthcheck:
