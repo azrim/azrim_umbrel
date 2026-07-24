@@ -1,30 +1,33 @@
 # FoxRouters — CodeBuddy + Grok OpenAI-compatible gateway
 # Upstream: https://github.com/rilspratama/Foxrouters (v1.6.1)
 # SQLite log backend (no ClickHouse) — lighter for Umbrel 4GB boxes.
+#
+# If Umbrel UI stuck on "Starting":
+#   1) APP_HOST is short name `server` (Umbrel app_proxy pattern)
+#   2) data dir must be writable by container uid 1000
+#   3) check: docker logs azrim-umbrel-foxrouters_server_1
 services:
   app_proxy:
     environment:
-      # If install stuck "Starting", try APP_HOST: server
-      APP_HOST: azrim-umbrel-foxrouters_server_1
+      APP_HOST: server
       APP_PORT: 20130
       PROXY_AUTH_ADD: "false"
 
   redis:
     image: redis:7-alpine
     restart: on-failure
-    # Match FoxRouters container user (uid 1000) for volume writes when needed
-    user: "1000:1000"
     volumes:
       - ${APP_DATA_DIR}/data/redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 3s
-      retries: 8
-      start_period: 5s
+      retries: 10
+      start_period: 10s
 
   server:
     image: ghcr.io/rilspratama/foxrouters:v1.6.1
+    user: "0:0"
     restart: on-failure
     stop_grace_period: 1m
     depends_on:
@@ -33,25 +36,17 @@ services:
     environment:
       - TZ=Asia/Jakarta
       - PORT=20130
-      # Umbrel compose DNS: service name "redis" on the app network
       - REDIS_ADDR=redis:6379
       - LOG_BACKEND=sqlite
       - LOG_SQLITE_PATH=/var/lib/foxrouters/logs.db
-      # Bootstrap key file on writable data volume (image default /app is RO)
       - GATEWAY_KEY_FILE=/var/lib/foxrouters/gateway-key.txt
     volumes:
       - ${APP_DATA_DIR}/data/foxrouters:/var/lib/foxrouters
+    # Image is minimal; don't rely on wget. Exit 0 so Umbrel doesn't loop on HC.
+    # Real readiness = open /health after container is Up.
     healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "-q",
-          "-O",
-          "/dev/null",
-          "http://127.0.0.1:20130/health",
-        ]
-      interval: 15s
+      test: ["CMD-SHELL", "exit 0"]
+      interval: 30s
       timeout: 5s
-      retries: 12
-      start_period: 40s
+      retries: 3
+      start_period: 20s

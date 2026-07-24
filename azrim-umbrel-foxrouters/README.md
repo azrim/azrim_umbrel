@@ -9,11 +9,42 @@ Umbrel Community App packaging for [FoxRouters](https://github.com/rilspratama/F
 1. **Uninstall 9Router** (homescreen → right-click → Uninstall) if you are fully replacing it.  
    Optional: keep 9Router until FoxRouters is healthy (both can coexist; different ports).
 2. App Store → Community → store `https://github.com/azrim/azrim_umbrel` → refresh.
-3. Install **FoxRouters**.
+3. Install **FoxRouters** (version **1.6.1-r2** or newer).
 4. Open from homescreen → `/login`.
 5. Admin key (first boot):
    - App data: Files → Apps → FoxRouters → `data/foxrouters/gateway-key.txt`  
    - Or container logs: look for `AUTO-BOOTSTRAP` / Redis key `gw:key:gw-…`
+
+## Stuck on "Starting"?
+
+Classic Umbrel proxy issue (same family as Email Vault).
+
+On **Umbrel host** Terminal (Settings → Advanced → Terminal → **Host**, not Hermes):
+
+```bash
+# find containers
+docker ps -a | grep -i fox
+
+# logs (name may vary)
+docker logs azrim-umbrel-foxrouters_server_1 --tail 80
+docker logs azrim-umbrel-foxrouters_redis_1 --tail 40
+
+# data perms (uid 1000)
+sudo mkdir -p /home/umbrel/umbrel/app-data/azrim-umbrel-foxrouters/data/foxrouters
+sudo mkdir -p /home/umbrel/umbrel/app-data/azrim-umbrel-foxrouters/data/redis
+sudo chown -R 1000:1000 /home/umbrel/umbrel/app-data/azrim-umbrel-foxrouters/data || true
+sudo chmod -R 777 /home/umbrel/umbrel/app-data/azrim-umbrel-foxrouters/data/foxrouters || true
+
+# restart app from UI, or:
+docker restart azrim-umbrel-foxrouters_server_1 azrim-umbrel-foxrouters_redis_1
+```
+
+Then: Community store **refresh** → Update FoxRouters if update shown → Restart app icon.
+
+Common log errors:
+- `sqlite … unable to open database file` → volume perms (fix above)
+- `redis: connection refused` → redis not healthy yet; wait / check redis logs
+- Proxy never green → `APP_HOST` must be `server` (fixed in 1.6.1-r2)
 6. Import CodeBuddy keys: Dashboard → Accounts → Bulk Import, or:
 
 ```bash
