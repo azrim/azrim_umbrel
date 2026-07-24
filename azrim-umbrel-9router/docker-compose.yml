@@ -1,0 +1,34 @@
+# 9Router — OpenAI-compatible AI gateway (dashboard + /v1)
+# Upstream: https://github.com/decolua/9router
+services:
+  app_proxy:
+    environment:
+      # Match Email Vault pattern (…_server_1). If install stuck "Starting", try APP_HOST: server
+      APP_HOST: azrim-umbrel-9router_server_1
+      APP_PORT: 20128
+      PROXY_AUTH_ADD: "false"
+
+  server:
+    image: decolua/9router:latest
+    restart: on-failure
+    stop_grace_period: 1m
+    environment:
+      - TZ=Asia/Jakarta
+      - DATA_DIR=/app/data
+      # Bind all interfaces inside compose network (Umbrel proxy reaches the service)
+      - HOST=0.0.0.0
+      - PORT=20128
+    volumes:
+      - ${APP_DATA_DIR}/data:/app/data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:20128/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
